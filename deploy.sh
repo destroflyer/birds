@@ -10,7 +10,7 @@ fi
 mvn clean install
 
 # Deploy
-rm -rf /var/www/destrostudios/apps/Birds/*
-mv assets /var/www/destrostudios/apps/Birds/
-mv target/birds-0.0.1.jar /var/www/destrostudios/apps/Birds/Birds.jar
+rm -rf ${2}*
+mv assets ${2}
+mv target/birds-0.0.1.jar ${2}Birds.jar
 curl https://destrostudios.com:8080/apps/3/updateFiles
