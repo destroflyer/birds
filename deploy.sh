@@ -16,4 +16,4 @@ mvn clean install
 rm -rf "${CLIENT}"*
 mv assets "${CLIENT}"
 mv target/birds-0.0.1.jar "${CLIENT}Birds.jar"
-curl https://destrostudios.com:8080/apps/3/updateFiles
+curl -X POST https://destrostudios.com:8080/apps/3/updateFiles
