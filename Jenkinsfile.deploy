@@ -5,10 +5,14 @@ pipeline {
         skipDefaultCheckout()
         ansiColor('xterm')
     }
+    parameters {
+        string(name: 'VERSION', defaultValue: 'master')
+    }
     stages {
         stage('Checkout') {
             steps {
                 checkout scm
+                sh 'git checkout $VERSION'
             }
         }
         stage('Build') {
@@ -20,6 +24,19 @@ pipeline {
             }
             steps {
                 sh 'mvn clean install'
+            }
+        }
+        stage('Deploy') {
+            environment {
+                CLIENT = '/var/destrostudios/apps/Birds'
+            }
+            steps {
+                sh 'rm -rf "$CLIENT"'
+                sh 'mkdir "$CLIENT"'
+                sh 'mv target/libs "$CLIENT"'
+                sh 'mv target/birds-0.0.1.jar "$CLIENT/Birds.jar"'
+                sh 'mv assets "$CLIENT"'
+                sh 'curl -X POST https://destrostudios.com:8080/apps/3/updateFiles'
             }
         }
     }

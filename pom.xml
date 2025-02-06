@@ -7,18 +7,25 @@
     <version>0.0.1</version>
     <name>Birds</name>
     <description>A small handpainted 2D game featuring birds sliding around in a landscape, written in Java.</description>
-
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
+        <version.maven-compiler-plugin>3.13.0</version.maven-compiler-plugin>
+        <version.maven-dependency-plugin>3.8.1</version.maven-dependency-plugin>
+        <version.maven-jar-plugin>3.4.2</version.maven-jar-plugin>
     </properties>
-
     <dependencies>
     </dependencies>
-
     <build>
         <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${version.maven-compiler-plugin}</version>
+                <configuration>
+                    <source>22</source>
+                    <target>22</target>
+                </configuration>
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
@@ -50,5 +57,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>
